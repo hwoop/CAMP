@@ -1,0 +1,14 @@
+# MCM (NeurIPS 2022), the paper's setting for every ID dataset. The code is the official get_ood_scores_clip of
+# deeplearning-wisc/MCM (openood/postprocessors/mcm)
+#   logit_scale false   max softmax of cos(f, t_c) / tau, without CLIP's logit scale (Eq. 1; the official code)
+#   tau 1.0             tau = 1 for all experiments (p. 5), the official --T
+#   prompt mcm          "this is a photo of a <label>" (Sec. 3; the released loop formats "a photo of a <label>")
+postprocessor:
+  name: mcm
+  postprocessor_args:
+    tau: 1.0
+    logit_scale: false
+vlm:
+  text:
+    prompt: mcm
+    center: true

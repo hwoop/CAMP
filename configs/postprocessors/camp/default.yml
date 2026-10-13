@@ -1,0 +1,21 @@
+postprocessor:
+  name: camp
+  postprocessor_args:
+    semantic:                   # warm-up score; MCM defaults tau 1.0, logit_scale true
+      method: mcm
+      args: {}
+    camp:
+      window_size: 8192         # N
+      shift_eps: 0.001          # eps
+      min_samples: 512          # N_min
+      covariance: full
+      id_reference: classwise
+      weighting: msp
+    fusion:
+      semantic_weight: 0.0
+    diagnostics:                # read-only observation (openood/postprocessors/camp/diagnostics.py); it never changes a score
+      level: "off"              # off (the method) | samples (per-sample scores) | summary (+ per-batch scalars) | full (+ window vectors)
+vlm:
+  text:
+    prompt: nice
+    center: true

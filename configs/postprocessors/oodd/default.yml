@@ -1,0 +1,21 @@
+# OODD (CVPR 2025), the paper's CLIP result (NegLabel + OODD, Table 5) for every ID dataset. The code is the official
+# CLIP code, NegLabel/tools/ood_test.py of zxk1212/OODD on its copy of NegLabel (openood/postprocessors/oodd)
+#   t 1, ngroup 100     the NegLabel score it starts from (custom_config/clip.py), as in neglabel/default.yml
+# fixed in the official code (the paper gives no CLIP-specific values): a dictionary of l = 2048 rows (Sec. 5.1) and
+# K_hat = 5 (Sec. 6.1), updated in chunks of 64 rows (the paper's 512 is for its ResNet tables); the paper's K = 100
+# (Sec. 5.1) belongs to the ID dictionary of its ResNet runs, which the CLIP code does not have
+postprocessor:
+  name: oodd
+  postprocessor_args:
+    t: 1
+    ngroup: 100
+vlm:
+  text:
+    prompt: nice
+    center: true
+  neglabel:
+    corpus: wordnet
+    ood_number: 10000
+    cos_percentile: 0.95
+    candidate_mode: selected
+    encode_unselected: true

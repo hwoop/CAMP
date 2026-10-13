@@ -1,0 +1,11 @@
+# Runs the `selection` item reads. `runs(ctx)` expands every entry over the context's benchmarks x seeds (the item's
+# defaults below unless `--benchmarks` / `--seeds` say otherwise). The item launches no run of its own: it replays the
+# CAMP main runs' streams from the cached image features and traces the TANL rule on them.
+item: selection
+benchmarks: [imagenet_openood]
+seeds: [0, 1, 42]
+runs:
+  - method: camp
+    label: null          # the main-table run (scripts/run.sh camp <benchmark> <seed>)
+    overrides: {}
+    overlays: []

@@ -1,0 +1,16 @@
+# Python >= 3.10.  The paper's runs used torch 2.1 (CUDA).
+torch>=2.1
+torchvision>=0.16
+numpy
+pyyaml
+scikit-learn
+tqdm
+Pillow
+ftfy
+regex
+gdown
+# the diagnostics tables (openood/postprocessors/camp/diagnostics.py) and the paper's experiments (scripts/experiment/)
+pandas
+pyarrow
+matplotlib
+scipy

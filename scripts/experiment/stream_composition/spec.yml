@@ -1,0 +1,18 @@
+# stream_composition: composition of the test streams.
+#
+# The item launches no run. Its numbers come from the image lists the benchmarks' dataset configurations name
+# (`data/benchmark_imglist/...`), counted the way `openood.datasets.ImglistDataset` reads them (`readlines()`: the last
+# line counts even without a trailing newline). The recorded CAMP main runs, when present, only cross-check the counts.
+
+item: stream_composition
+
+benchmarks: [imagenet_standard, imagenet_openood, cifar10_openood, cifar100_openood]
+seeds: [0, 1, 42]
+
+# No run is needed, so `plan` lists nothing and `run` launches nothing.
+runs: []
+
+# The recorded runs whose `scores/<leaf>.npz` label counts are compared with the image-list counts (never launched).
+cross_check:
+  method: camp
+  label: null

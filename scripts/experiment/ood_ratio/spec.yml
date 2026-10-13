@@ -1,0 +1,47 @@
+# Runs of the ood_ratio item: CAMP and MCM on the two ImageNet benchmarks with the OOD ratio
+# of every per-leaf stream fixed by an evaluator.stream overlay. `runs(ctx)` expands every entry over
+# ctx.benchmarks x ctx.seeds for each of its methods. The entry without a label is the main run, whose streams keep
+# the benchmark's natural OOD ratio; it is the reference point of the figure.
+item: ood_ratio
+benchmarks: [imagenet_standard, imagenet_openood]
+seeds: [0, 1, 42]
+runs:
+  - method: [camp, mcm]
+    label: null
+    ratio: null
+  - method: [camp, mcm]
+    label: ROB_prevalence_001
+    ratio: 0.01
+    overlays: [scripts/experiment/ood_ratio/overlays/prevalence_001.yml]
+  - method: [camp, mcm]
+    label: ROB_prevalence_005
+    ratio: 0.05
+    overlays: [scripts/experiment/ood_ratio/overlays/prevalence_005.yml]
+  - method: [camp, mcm]
+    label: ROB_prevalence_01
+    ratio: 0.1
+    overlays: [scripts/experiment/ood_ratio/overlays/prevalence_01.yml]
+  - method: [camp, mcm]
+    label: ROB_prevalence_02
+    ratio: 0.2
+    overlays: [scripts/experiment/ood_ratio/overlays/prevalence_02.yml]
+  - method: [camp, mcm]
+    label: ROB_prevalence_05
+    ratio: 0.5
+    overlays: [scripts/experiment/ood_ratio/overlays/prevalence_05.yml]
+  - method: [camp, mcm]
+    label: ROB_prevalence_08
+    ratio: 0.8
+    overlays: [scripts/experiment/ood_ratio/overlays/prevalence_08.yml]
+  - method: [camp, mcm]
+    label: ROB_prevalence_09
+    ratio: 0.9
+    overlays: [scripts/experiment/ood_ratio/overlays/prevalence_09.yml]
+  - method: [camp, mcm]
+    label: ROB_prevalence_095
+    ratio: 0.95
+    overlays: [scripts/experiment/ood_ratio/overlays/prevalence_095.yml]
+  - method: [camp, mcm]
+    label: ROB_prevalence_099
+    ratio: 0.99
+    overlays: [scripts/experiment/ood_ratio/overlays/prevalence_099.yml]

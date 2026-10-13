@@ -1,0 +1,6 @@
+# ood_ratio arm ROB_prevalence_005: every per-leaf stream holds 5 % OOD samples (evaluator.stream, see README.md).
+# The stream planner thins whichever side exceeds the ratio (OOD or ID rows) with the run seed; the method config
+# is untouched.
+evaluator:
+  stream:
+    ood_ratio: 0.05

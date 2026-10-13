@@ -1,0 +1,8 @@
+# Append after camp/default.yml. Observation only; scoring and stream order stay the same.
+diagnostic:
+  enabled: true
+  observation_profile: sample_provenance
+postprocessor:
+  postprocessor_args:
+    diagnostics:
+      level: summary

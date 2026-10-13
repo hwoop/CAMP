@@ -1,0 +1,4 @@
+network:
+  name: vanilla_clip
+  backbone:
+    name: ViT-B/16

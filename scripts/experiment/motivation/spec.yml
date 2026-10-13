@@ -1,0 +1,9 @@
+# motivation: the recorded CAMP main run whose iNaturalist stream is replayed; no new runs are needed.
+# `runs(ctx)` expands every entry of `runs` over ctx.benchmarks x ctx.seeds (the item's defaults are below).
+benchmarks: [imagenet_openood]
+seeds: [0]
+runs:
+  - method: camp
+    label: null
+    overrides: {}
+    overlays: []

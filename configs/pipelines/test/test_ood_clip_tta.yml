@@ -1,0 +1,23 @@
+exp_name: "'@{dataset.name}'_'@{network.name}'_'@{pipeline.name}'_'@{evaluator.name}'_'@{postprocessor.name}'/'@{mark}'-s'@{seed}'"
+output_dir: ./results/
+mark: default
+seed: 0
+
+num_workers: 0
+
+pipeline:
+  name: test_ood
+
+cache:
+  root: ./.cache/ # moves only the image-feature cache; the text and negative-label caches stay in ./.cache/
+  image:
+    mode: disabled
+    load_validation: strict
+    source_validation: auto
+    # batch size the features are extracted (and the cache keyed) with; 0 = the stream loader's batch size. A run that
+    # reads the stream in smaller batches (e.g. --dataset.test.batch_size 1) sets this to the standard 256 so that it
+    # finds the cache the standard runs built instead of re-encoding every image.
+    extraction_batch_size: 0
+
+evaluator:
+  name: ood_clip_tta

@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the paper below."
+type: software
+title: "CAMP: Selection-Free Test-Time Out-of-Distribution Detection with Vision-Language Models"
+authors:
+  - family-names: Park
+    given-names: Hyunwoo
+    affiliation: "Department of Industrial and Management Engineering, Korea University"
+  - family-names: Lim
+    given-names: Saerin
+    affiliation: "Department of Industrial and Management Engineering, Korea University"    
+  - family-names: Kim
+    given-names: Seoung Bum
+    affiliation: "Department of Industrial and Management Engineering, Korea University"
+repository-code: "https://github.com/hwoop/CAMP"
+license: MIT
+keywords:
+  - out-of-distribution detection
+  - test-time out-of-distribution detection
+  - vision-language models
+  - CLIP
+preferred-citation:
+  type: unpublished
+  title: "CAMP: Selection-Free Test-Time Out-of-Distribution Detection with Vision-Language Models"
+  authors:
+    - family-names: Park
+      given-names: Hyunwoo
+    - family-names: Lim
+      given-names: Saerin
+    - family-names: Kim
+      given-names: Seoung Bum
+  year: 2026
+  status: in-preparation
+  # TODO after publication: add "journal:" and "doi:" here and a "doi:" at the top level

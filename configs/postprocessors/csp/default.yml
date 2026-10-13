@@ -1,0 +1,35 @@
+# CSP (NeurIPS 2024, arXiv 2410.08611), the paper's setting for every ID dataset; the score is NegLabel's (Sec. 5.1).
+# The code is the official ScalableClassifier of MengyuanChen21/NeurIPS2024-CSP (openood/postprocessors/csp); t, ngroup
+# and seed are its arguments
+#   t 1, ngroup 100               NegLabel's score and grouping (custom_config/clip-ViT-B16.py)
+#   corpus_root                   the 27 WordNet files NegLabel reads
+#   select_ratio 0.15             r = 15% (Sec. 5.1), taken separately among nouns and conjugated adjectives
+#   superclass_prompt             the 14 superclasses of Sec. 5.1, one drawn per adjective
+#   noun_prompt, adj_prompt       the 8 and 4 templates of Sec. 5.1 (strings from the official class_names.py)
+#   text.prompt csp_noun          the ID prototypes use the 8 noun templates, as the official code does
+# from the official code (custom_config/clip-ViT-B16.py; the paper does not state them)
+#   exclude                       txt_exclude
+#   cos_percentile 0.95           pencentile: the 0.95 quantile of a candidate's cosines to the ID prototypes
+#   max_cos 0.95                  a candidate whose maximum cosine to an ID class exceeds 0.95 is dropped
+#   seed 0                        the classifier's seed: the superclass drawn for each adjective (official SEED=0)
+# this repository's choices for the pool: sorted() file order, an isolated RNG for the superclass draw, per-template
+# ID normalisation (openood/utils/vlm/negative_labels/csp.py)
+postprocessor:
+  name: csp
+  postprocessor_args:
+    t: 1
+    ngroup: 100
+    seed: 0
+vlm:
+  text:
+    prompt: csp_noun
+    center: true
+  csp:
+    corpus_root: ./data/txtfiles
+    exclude: noun.person.txt,noun.quantity.txt,noun.group.txt,adj.pert.txt
+    noun_prompt: csp_noun
+    adj_prompt: csp_adj
+    superclass_prompt: csp_superclass
+    select_ratio: 0.15
+    cos_percentile: 0.95
+    max_cos: 0.95

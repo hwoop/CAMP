@@ -1,0 +1,44 @@
+dataset:
+  name: imagenet
+  num_classes: 1000
+  pre_size: 256
+  image_size: 224
+
+  interpolation: bicubic
+  normalization_type: clip
+
+  num_workers: '@{num_workers}'
+
+  split_names: [test]
+
+  test:
+    data_dir: ./data/images_largescale/
+    # the whole ILSVRC-2012 val set (50,000) of the standard setting; build it with scripts/make_imagenet_test_all.py
+    imglist_pth: ./data/benchmark_imglist/imagenet/test_imagenet_all.txt
+    batch_size: 256
+    shuffle: False
+
+ood_dataset:
+  name: imagenet_ood
+  num_classes: 1000
+
+  batch_size: 256
+  shuffle: False # the evaluator draws the seeded stream order itself
+
+  num_workers: '@{num_workers}'
+  split_names: [farood]
+
+  farood:
+    datasets: [inaturalist, sun, places, dtd]
+    inaturalist:
+      data_dir: ./data/images_largescale/
+      imglist_pth: ./data/benchmark_imglist/imagenet/test_inaturalist.txt
+    sun:
+      data_dir: ./data/images_largescale/
+      imglist_pth: ./data/benchmark_imglist/imagenet/test_sun.txt
+    places:
+      data_dir: ./data/images_largescale/
+      imglist_pth: ./data/benchmark_imglist/imagenet/test_places.txt
+    dtd:
+      data_dir: ./data/images_largescale/
+      imglist_pth: ./data/benchmark_imglist/imagenet/test_dtd.txt

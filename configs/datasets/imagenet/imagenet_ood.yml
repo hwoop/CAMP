@@ -1,0 +1,30 @@
+# Overlay on imagenet_traditional_four_ood.yml: OpenOOD v1.5 tests on the 45,000-row test_imagenet.txt, not all 50,000.
+dataset:
+  test:
+    imglist_pth: ./data/benchmark_imglist/imagenet/test_imagenet.txt
+
+ood_dataset:
+  name: imagenet_ood
+  batch_size: 256
+  split_names: [nearood, farood]
+
+  nearood:
+    datasets: [ssb_hard, ninco]
+    ssb_hard:
+      data_dir: ./data/images_largescale/
+      imglist_pth: ./data/benchmark_imglist/imagenet/test_ssb_hard.txt
+    ninco:
+      data_dir: ./data/images_largescale/
+      imglist_pth: ./data/benchmark_imglist/imagenet/test_ninco.txt
+
+  farood:
+    datasets: [inaturalist, textures, openimageo]
+    inaturalist:
+      data_dir: ./data/images_largescale/
+      imglist_pth: ./data/benchmark_imglist/imagenet/test_inaturalist.txt
+    textures:
+      data_dir: ./data/images_classic/
+      imglist_pth: ./data/benchmark_imglist/imagenet/test_textures.txt
+    openimageo:
+      data_dir: ./data/images_largescale/
+      imglist_pth: ./data/benchmark_imglist/imagenet/test_openimage_o.txt

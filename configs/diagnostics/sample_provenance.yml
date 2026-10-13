@@ -1,0 +1,8 @@
+# Observation profile: the evaluator hands each batch's ground truth (label, is_ood) and provenance (source dataset,
+# source row) to a postprocessor that records diagnostics (CAMP with postprocessor_args.diagnostics.level
+# samples|summary|full).
+# Scores do not change; the columns let an analysis split ID from OOD and fetch a sample's cached feature afterwards.
+# Append it to --config after the method config.
+diagnostic:
+  enabled: true
+  observation_profile: sample_provenance

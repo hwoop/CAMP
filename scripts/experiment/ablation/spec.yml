@@ -1,0 +1,27 @@
+# Runs of the ablation study.
+#
+# Every entry of `runs` is one table row: the method, the arm label (null = the main run of `scripts/run.sh`), the
+# row name and the `--dotted.key value` overrides that turn the main run into the arm. The item expands each
+# entry over `benchmarks` x `seeds` (and the context's backbone). Override keys must already exist in
+# configs/postprocessors/camp/default.yml; a run whose ood.csv exists is never relaunched.
+benchmarks: [imagenet_standard, imagenet_openood]
+seeds: [0, 1, 42]
+runs:
+  - method: camp
+    label: null
+    name: CAMP (Proposed)
+  - method: camp
+    label: ABL_ref_global
+    name: w/o class balancing
+    overrides:
+      postprocessor.postprocessor_args.camp.id_reference: global
+  - method: camp
+    label: ABL_cov_identity
+    name: w/o covariance adjustment
+    overrides:
+      postprocessor.postprocessor_args.camp.covariance: identity
+  - method: camp
+    label: ABL_weight_uniform
+    name: w/o confidence weighting
+    overrides:
+      postprocessor.postprocessor_args.camp.weighting: uniform

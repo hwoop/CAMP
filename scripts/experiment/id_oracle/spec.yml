@@ -1,0 +1,12 @@
+# Runs the id_oracle item replays. `runs(ctx)` expands every entry over ctx.benchmarks x ctx.seeds (and ctx.backbone);
+# the item adds no experiment arm of its own: it replays recorded CAMP runs from their cached features and rescores
+# every stream with oracle ID statistics. `--opt labels=ROB_prevalence_01,...` adds recorded CAMP arms of other items
+# (their overlays are looked up in the ood_ratio spec when the label is one of its arms).
+item: id_oracle
+benchmarks: [imagenet_openood, imagenet_standard, cifar10_openood, cifar100_openood]
+seeds: [0, 1, 42]
+runs:
+  - method: camp
+    label: null
+    overrides: {}
+    overlays: []

@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.gz binary
+*.png binary
+*.pth binary
+# keep the WordNet lists exactly as distributed (CRLF line endings); the negative-label prompts are built from the raw lines
+data/txtfiles/** -text

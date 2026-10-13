@@ -1,0 +1,10 @@
+# The runs this item reads. No new run: it replays CAMP's main runs from their cached image features.
+# runs(ctx) expands every entry over ctx.benchmarks x ctx.seeds (the `--benchmarks` / `--seeds` options, defaulting
+# to the lists below); `--opt seeds=0` restricts the seeds further for a quick single-seed replay.
+benchmarks: [imagenet_openood]
+seeds: [0, 1, 42]
+runs:
+  - method: camp
+    label: null          # the main-table run (scripts/run.sh camp imagenet_openood)
+    overrides: {}
+    overlays: []

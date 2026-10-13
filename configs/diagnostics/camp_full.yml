@@ -1,0 +1,9 @@
+# Summary tables plus sparse feature-space checkpoints. Figure analyses still
+# replay cached features when they need the complete window or an oracle.
+diagnostic:
+  enabled: true
+  observation_profile: sample_provenance
+postprocessor:
+  postprocessor_args:
+    diagnostics:
+      level: full

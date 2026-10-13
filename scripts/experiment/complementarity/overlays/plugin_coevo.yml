@@ -1,0 +1,30 @@
+# EFT_plugin_coevo: CAMP with coevo as the plug-in detector (Section 5.4, Table 4, row "+ CAMP" under coevo).
+# Appended to --config after configs/postprocessors/camp/default.yml. semantic.args is a copy of
+# configs/postprocessors/coevo/default.yml's postprocessor_args (vlm.neglabel copied from the same file);
+# fusion.semantic_weight 1.0 adds the detector's standardized score to z(R) with equal weight;
+# vlm.text.prompt stays CAMP's (nice) because it is not redefined here.
+postprocessor:
+  postprocessor_args:
+    semantic:
+      method: coevo
+      args:
+        thres: 0.5
+        gap: 0.8
+        memleng: 10
+        lambdaval: 0.2
+        beta: 5.5
+        group_num: 5
+        random_permute: true
+        samada: true
+        in_score: combine
+        topk_neg: 5
+        vision_logit_scale: 100.0
+    fusion:
+      semantic_weight: 1.0
+vlm:
+  neglabel:
+    corpus: wordnet
+    ood_number: 10000
+    cos_percentile: 0.95
+    candidate_mode: selected
+    encode_unselected: true

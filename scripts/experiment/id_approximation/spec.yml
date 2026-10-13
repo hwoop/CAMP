@@ -1,0 +1,10 @@
+# Runs the id_approximation item reads. `runs(ctx)` expands every entry of `runs` over ctx.benchmarks x ctx.seeds
+# (and ctx.backbone); the item adds no experiment arm, it replays the CAMP main runs from their cached features.
+item: id_approximation
+benchmarks: [imagenet_openood]
+seeds: [0, 1, 42]
+runs:
+  - method: camp
+    label: null
+    overrides: {}
+    overlays: []

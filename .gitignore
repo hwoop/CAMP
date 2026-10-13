@@ -1,0 +1,27 @@
+# run outputs
+results/
+.cache/
+data/*
+!data/txtfiles/
+
+# backups made before a re-measurement
+results_backup_*/
+.cache_backup_*/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.hypothesis/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.env
+
+# editors and OS
+.vscode/
+.idea/
+.DS_Store
+*.log

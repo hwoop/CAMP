@@ -1,0 +1,29 @@
+# TANL (CVPR 2026), the paper's setting (Sec. 4.1) for every ID dataset. The code is the official
+# ActivatedNegPostprocessor of PolyU-VCLab/OpenOOD-VLM (openood/postprocessors/tanl); these are its arguments
+#   memleng 300         queue length L (Eq. 9, Fig. A5a)
+#   beta 1000           M negative labels (Eq. 15)
+#   gap 0.2             g (Sec. 4.1, A6.5)
+#   alpha 0.95          alpha (Eq. 12)
+#   prompt nice         "The nice <label>" (Sec. 4.1); corpus: NegLabel's WordNet subset (A6.5)
+# from the released code (the paper does not state it)
+#   gamma 1             prefix step of the activation-aware score (Eq. 15)
+# fixed in the official code: the threshold reads the last 20,000 scores (A6.5, Eq. A6.19); the negative queue
+# starts from 15 noise images of five kinds (Eq. 10); thres, in_score and cossim keep the values of official.sh
+postprocessor:
+  name: tanl
+  postprocessor_args:
+    memleng: 300
+    beta: 1000
+    gamma: 1
+    gap: 0.2
+    alpha: 0.95
+vlm:
+  text:
+    prompt: nice
+    center: true
+  neglabel:
+    corpus: wordnet
+    ood_number: 10000
+    cos_percentile: 0.95
+    candidate_mode: selected
+    encode_unselected: true

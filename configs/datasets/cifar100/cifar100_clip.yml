@@ -1,0 +1,18 @@
+dataset:
+  name: cifar100
+  num_classes: 100
+  pre_size: 224
+  image_size: 224
+
+  interpolation: bicubic
+  normalization_type: clip
+
+  num_workers: '@{num_workers}'
+
+  split_names: [test]
+
+  test:
+    data_dir: ./data/images_classic/
+    imglist_pth: ./data/benchmark_imglist/cifar100/test_cifar100.txt
+    batch_size: 200
+    shuffle: False

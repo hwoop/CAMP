@@ -1,0 +1,11 @@
+# Append after camp/default.yml. Observation only; scoring and stream order stay the same.
+# Per-sample scores only (sample_scores): no per-batch table, no covariance spectrum, no window vectors. This is
+# the level for streams of very small batches, where the per-batch work of `summary` would be done for every sample
+# (the warm-up analysis at batch size 1, scripts/experiment/warmup_batch1).
+diagnostic:
+  enabled: true
+  observation_profile: sample_provenance
+postprocessor:
+  postprocessor_args:
+    diagnostics:
+      level: samples

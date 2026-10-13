@@ -1,0 +1,19 @@
+dataset:
+  name: cifar10
+  num_classes: 10
+  pre_size: 224
+  image_size: 224
+
+  interpolation: bicubic
+  normalization_type: clip
+
+  num_workers: '@{num_workers}'
+
+  split_names: [test]
+
+  test:
+    data_dir: ./data/images_classic/
+    # OpenOOD v1.5 ID test list: 9,000 images (the other 1,000 are val_cifar10.txt), not test_cifar10_full.txt
+    imglist_pth: ./data/benchmark_imglist/cifar10/test_cifar10.txt
+    batch_size: 200
+    shuffle: False

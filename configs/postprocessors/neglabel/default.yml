@@ -1,0 +1,22 @@
+# NegLabel (ICLR 2024), the paper's setting (Sec. 4.1) for every ID dataset. The code is the official
+# ScalableClassifier of tmlr-group/NegLabel (openood/postprocessors/neglabel); t and ngroup are its arguments
+#   ood_number 10000       M = 10,000 WordNet negative labels
+#   cos_percentile 0.95    eta = 0.05 on the cosine distance, i.e. the 95th percentile of the cosine similarity
+#   t 1                    the sum-softmax score at tau = 0.01 (the logits are 100 cos; custom_config/clip.py)
+#   ngroup 100             n_g = 100 groups, drawn in every batch by the official seed-0 randperm
+#   prompt nice            "The nice <label>." (A.5.3, Table 14; prompt_idx 85 of the released config: "the nice <label>")
+postprocessor:
+  name: neglabel
+  postprocessor_args:
+    t: 1
+    ngroup: 100
+vlm:
+  text:
+    prompt: nice
+    center: true
+  neglabel:
+    corpus: wordnet
+    ood_number: 10000
+    cos_percentile: 0.95
+    candidate_mode: selected
+    encode_unselected: true

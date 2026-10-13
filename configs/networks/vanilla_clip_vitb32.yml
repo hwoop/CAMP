@@ -1,0 +1,5 @@
+# The results path omits the backbone: give these runs their own --mark (scripts/run.sh does).
+network:
+  name: vanilla_clip
+  backbone:
+    name: ViT-B/32

@@ -1,0 +1,21 @@
+# Runs of the `complementarity` item, expanded over benchmarks x seeds by runs(ctx).
+# `label: null` is a method's main run (the "<Method>" row, shared with main_results); `EFT_plugin_<d>` is CAMP with
+# detector d as the plug-in score (the "+ CAMP" row), configured by the overlay appended to --config.
+benchmarks: [imagenet_standard, imagenet_openood]
+seeds: [0, 1, 42]
+runs:
+  - {method: camp, label: null}
+  - {method: mcm, label: null}
+  - {method: camp, label: EFT_plugin_mcm, overlays: [scripts/experiment/complementarity/overlays/plugin_mcm.yml]}
+  - {method: neglabel, label: null}
+  - {method: camp, label: EFT_plugin_neglabel, overlays: [scripts/experiment/complementarity/overlays/plugin_neglabel.yml]}
+  - {method: csp, label: null}
+  - {method: camp, label: EFT_plugin_csp, overlays: [scripts/experiment/complementarity/overlays/plugin_csp.yml]}
+  - {method: adaneg, label: null}
+  - {method: camp, label: EFT_plugin_adaneg, overlays: [scripts/experiment/complementarity/overlays/plugin_adaneg.yml]}
+  - {method: oodd, label: null}
+  - {method: camp, label: EFT_plugin_oodd, overlays: [scripts/experiment/complementarity/overlays/plugin_oodd.yml]}
+  - {method: coevo, label: null}
+  - {method: camp, label: EFT_plugin_coevo, overlays: [scripts/experiment/complementarity/overlays/plugin_coevo.yml]}
+  - {method: tanl, label: null}
+  - {method: camp, label: EFT_plugin_tanl, overlays: [scripts/experiment/complementarity/overlays/plugin_tanl.yml]}

@@ -1,0 +1,24 @@
+# EFT_plugin_tanl: CAMP with tanl as the plug-in detector (Section 5.4, Table 4, row "+ CAMP" under tanl).
+# Appended to --config after configs/postprocessors/camp/default.yml. semantic.args is a copy of
+# configs/postprocessors/tanl/default.yml's postprocessor_args (vlm.neglabel copied from the same file);
+# fusion.semantic_weight 1.0 adds the detector's standardized score to z(R) with equal weight;
+# vlm.text.prompt stays CAMP's (nice) because it is not redefined here.
+postprocessor:
+  postprocessor_args:
+    semantic:
+      method: tanl
+      args:
+        memleng: 300
+        beta: 1000
+        gamma: 1
+        gap: 0.2
+        alpha: 0.95
+    fusion:
+      semantic_weight: 1.0
+vlm:
+  neglabel:
+    corpus: wordnet
+    ood_number: 10000
+    cos_percentile: 0.95
+    candidate_mode: selected
+    encode_unselected: true

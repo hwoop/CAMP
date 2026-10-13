@@ -1,0 +1,39 @@
+# CoEvo (AAAI 2026, arXiv 2601.08476), the paper's CoEvo_NegLabel (Implementation Details) for every ID dataset. The
+# code is the official TTAPromptPostprocessor_CoEvo of yuleoliu/CoEvo with its network FixedCLIP_CoEvo_Neglabel
+# (openood/postprocessors/coevo); these are their arguments
+#   memleng 10               L = 10
+#   vision_logit_scale 100   tau = 0.01 in Eq. (3): the network's ls_vision (the released script uses 50)
+#   lambdaval 0.2            1 - lambda, with lambda = 0.8 in Eqs. (4) and (11)
+#   topk_neg 5               N = 5 in Eq. (5)
+#   beta 5.5, samada true    Eq. (2), the sample-adaptive visual proxies
+#   prompt nice, M           "The nice cls"; NegLabel's 10K negative labels
+# from the released code (the paper does not state them)
+#   gap 0.8                  margin gamma of Eq. (14)-(15) (the paper shows only its sensitivity, Fig. 7)
+#   group_num 5, in_score combine, int(beta) = 5, thres 0.5 before the first batch
+# fixed in the official code: tau = 0.01 in Eq. (1) (the literal 100.0), the adaptive threshold over the last 512
+# scores (carried from one stream to the next), a fresh permutation of the groups per score from the global RNG
+# protocol: this repository's batch (256 ImageNet, 200 CIFAR; the paper's is 128) and NegLabel's corpus as the pool
+postprocessor:
+  name: coevo
+  postprocessor_args:
+    thres: 0.5
+    gap: 0.8
+    memleng: 10
+    lambdaval: 0.2
+    beta: 5.5
+    group_num: 5
+    random_permute: true
+    samada: true
+    in_score: combine
+    topk_neg: 5
+    vision_logit_scale: 100.0
+vlm:
+  text:
+    prompt: nice
+    center: true
+  neglabel:
+    corpus: wordnet
+    ood_number: 10000
+    cos_percentile: 0.95
+    candidate_mode: selected
+    encode_unselected: true

@@ -1,0 +1,17 @@
+# EFT_plugin_mcm: CAMP with mcm as the plug-in detector (Section 5.4, Table 4, row "+ CAMP" under mcm).
+# Appended to --config after configs/postprocessors/camp/default.yml. semantic.args is a copy of
+# configs/postprocessors/mcm/default.yml's postprocessor_args (MCM reads no vlm.neglabel / vlm.csp block);
+# fusion.semantic_weight 1.0 adds the detector's standardized score to z(R) with equal weight;
+# vlm.text.prompt is the detector's own (mcm), as in the manuscript's run.
+postprocessor:
+  postprocessor_args:
+    semantic:
+      method: mcm
+      args:
+        tau: 1.0
+        logit_scale: false
+    fusion:
+      semantic_weight: 1.0
+vlm:
+  text:
+    prompt: mcm

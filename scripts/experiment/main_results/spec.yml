@@ -1,0 +1,15 @@
+# The runs of the main tables: every compared method and CAMP on every benchmark, three
+# seeds, the main run of each method (no arm label, no overrides, no overlays). `runs(ctx)` expands this over
+# ctx.benchmarks x ctx.seeds; the same runs are what `scripts/run_all.sh` launches.
+item: main_results
+benchmarks: [imagenet_standard, imagenet_openood, cifar10_openood, cifar100_openood]
+seeds: [0, 1, 42]
+runs:
+  - {method: mcm, label: null}
+  - {method: neglabel, label: null}
+  - {method: csp, label: null}
+  - {method: adaneg, label: null}
+  - {method: oodd, label: null}
+  - {method: coevo, label: null}
+  - {method: tanl, label: null}
+  - {method: camp, label: null}

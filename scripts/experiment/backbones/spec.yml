@@ -1,0 +1,17 @@
+# The runs of the `backbones` item: every compared method and CAMP on the two ImageNet-1K benchmarks with the
+# three CLIP backbones beside ViT-B/16. `runs(ctx)` expands `runs` over
+# `backbones` x ctx.benchmarks x ctx.seeds; every run is a main run (no label, no overrides, no overlays), only the
+# network config and the `_<backbone>` suffix of the mark differ from `scripts/run.sh`'s ViT-B/16 runs.
+item: backbones
+benchmarks: [imagenet_standard, imagenet_openood]
+seeds: [0, 1, 42]
+backbones: [rn50, vitb32, vitl14]
+runs:
+  - {method: mcm, label: null}
+  - {method: neglabel, label: null}
+  - {method: csp, label: null}
+  - {method: adaneg, label: null}
+  - {method: oodd, label: null}
+  - {method: coevo, label: null}
+  - {method: tanl, label: null}
+  - {method: camp, label: null}

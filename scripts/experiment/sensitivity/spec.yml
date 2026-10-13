@@ -1,0 +1,77 @@
+# Sensitivity of CAMP to its three hyperparameters on the two ImageNet-1K benchmarks.
+#
+# Every run is CAMP with one hyperparameter changed through a `--dotted.key value` override of
+# configs/postprocessors/camp/default.yml (the keys exist there, so no overlay YAML is needed). The canonical values
+# (N = 8192, N_min = 512, eps = 1e-3) are the main run, which every axis reuses as its default point.
+# YAML 1.1 reads `1e-4` as a string, so eps values are written as decimals.
+item: sensitivity
+method: camp
+benchmarks: [imagenet_standard, imagenet_openood]
+seeds: [0, 1, 42]
+
+# display group -> [benchmark, ood.csv row]: the three lines of every panel
+groups:
+  IN-1K: [imagenet_standard, farood]
+  near: [imagenet_openood, nearood]
+  far: [imagenet_openood, farood]
+
+# the three panels (columns) of the figure, in order
+axes:
+  window_size:
+    key: postprocessor.postprocessor_args.camp.window_size
+    title: Window size
+    symbol: N
+    default: 8192
+    scale: log2
+    table: sensitivity_window
+    panel: (a)
+  min_samples:
+    key: postprocessor.postprocessor_args.camp.min_samples
+    title: Warm-up length
+    symbol: N_min
+    default: 512
+    scale: log2
+    table: sensitivity_warmup
+    panel: (b)
+  shift_eps:
+    key: postprocessor.postprocessor_args.camp.shift_eps
+    title: Ridge constant
+    symbol: eps
+    default: 0.001
+    scale: log10
+    table: sensitivity_eps
+    panel: (c)
+
+# the main run and the 15 arms; each is expanded over benchmarks x seeds (15 x 2 x 3 = 90 arm runs + 6 main runs)
+runs:
+  - {method: camp, label: null, overrides: {}}
+  - {method: camp, label: SEN_window_256, axis: window_size, value: 256,
+     overrides: {postprocessor.postprocessor_args.camp.window_size: 256}}
+  - {method: camp, label: SEN_window_512, axis: window_size, value: 512,
+     overrides: {postprocessor.postprocessor_args.camp.window_size: 512}}
+  - {method: camp, label: SEN_window_1024, axis: window_size, value: 1024,
+     overrides: {postprocessor.postprocessor_args.camp.window_size: 1024}}
+  - {method: camp, label: SEN_window_2048, axis: window_size, value: 2048,
+     overrides: {postprocessor.postprocessor_args.camp.window_size: 2048}}
+  - {method: camp, label: SEN_window_4096, axis: window_size, value: 4096,
+     overrides: {postprocessor.postprocessor_args.camp.window_size: 4096}}
+  - {method: camp, label: SEN_window_16384, axis: window_size, value: 16384,
+     overrides: {postprocessor.postprocessor_args.camp.window_size: 16384}}
+  - {method: camp, label: SEN_window_32768, axis: window_size, value: 32768,
+     overrides: {postprocessor.postprocessor_args.camp.window_size: 32768}}
+  - {method: camp, label: SEN_warmup_256, axis: min_samples, value: 256,
+     overrides: {postprocessor.postprocessor_args.camp.min_samples: 256}}
+  - {method: camp, label: SEN_warmup_1024, axis: min_samples, value: 1024,
+     overrides: {postprocessor.postprocessor_args.camp.min_samples: 1024}}
+  - {method: camp, label: SEN_warmup_2048, axis: min_samples, value: 2048,
+     overrides: {postprocessor.postprocessor_args.camp.min_samples: 2048}}
+  - {method: camp, label: SEN_warmup_4096, axis: min_samples, value: 4096,
+     overrides: {postprocessor.postprocessor_args.camp.min_samples: 4096}}
+  - {method: camp, label: SEN_warmup_8192, axis: min_samples, value: 8192,
+     overrides: {postprocessor.postprocessor_args.camp.min_samples: 8192}}
+  - {method: camp, label: SEN_eps_1e-4, axis: shift_eps, value: 0.0001,
+     overrides: {postprocessor.postprocessor_args.camp.shift_eps: 0.0001}}
+  - {method: camp, label: SEN_eps_1e-2, axis: shift_eps, value: 0.01,
+     overrides: {postprocessor.postprocessor_args.camp.shift_eps: 0.01}}
+  - {method: camp, label: SEN_eps_1e-1, axis: shift_eps, value: 0.1,
+     overrides: {postprocessor.postprocessor_args.camp.shift_eps: 0.1}}

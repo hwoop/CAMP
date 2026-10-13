@@ -1,0 +1,27 @@
+# EFT_plugin_csp: CAMP with csp as the plug-in detector (Section 5.4, Table 4, row "+ CAMP" under csp).
+# Appended to --config after configs/postprocessors/camp/default.yml. semantic.args is a copy of
+# configs/postprocessors/csp/default.yml's postprocessor_args (vlm.csp copied from the same file);
+# fusion.semantic_weight 1.0 adds the detector's standardized score to z(R) with equal weight;
+# vlm.text.prompt is the detector's own (csp_noun), as in the manuscript's run.
+postprocessor:
+  postprocessor_args:
+    semantic:
+      method: csp
+      args:
+        t: 1
+        ngroup: 100
+        seed: 0
+    fusion:
+      semantic_weight: 1.0
+vlm:
+  text:
+    prompt: csp_noun
+  csp:
+    corpus_root: ./data/txtfiles
+    exclude: noun.person.txt,noun.quantity.txt,noun.group.txt,adj.pert.txt
+    noun_prompt: csp_noun
+    adj_prompt: csp_adj
+    superclass_prompt: csp_superclass
+    select_ratio: 0.15
+    cos_percentile: 0.95
+    max_cos: 0.95
