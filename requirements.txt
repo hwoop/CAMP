@@ -8,7 +8,7 @@ tqdm
 Pillow
 ftfy
 regex
-gdown
+gdown>=5.2
 # the diagnostics tables (openood/postprocessors/camp/diagnostics.py) and the paper's experiments (scripts/experiment/)
 pandas
 pyarrow

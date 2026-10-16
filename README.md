@@ -42,18 +42,16 @@ configured under [`configs/networks/`](configs/networks/)).
 
 ## Data preparation
 
-Datasets, splits and image lists follow [OpenOOD v1.5](https://github.com/Jingkang50/OpenOOD). One script fetches the
-image lists and every dataset of the four benchmarks below from OpenOOD's Google Drive into `data/`:
+Datasets, splits and image lists follow [OpenOOD v1.5](https://github.com/Jingkang50/OpenOOD). One script downloads
+what the four benchmarks below read (about 18 GB) into `data/`, then builds what OpenOOD does not ship: the full DTD as
+`dtd`, the SUN and Places image lists, and the 50,000-image ID list of `imagenet_standard`:
 
 ```bash
-bash scripts/download/download.sh          # OpenOOD v1.5 image lists + datasets -> data/ (gdown)
-python scripts/make_imagenet_test_all.py   # ID list of the ImageNet-1K benchmark (see below)
+bash scripts/download/download.sh
 ```
 
-The ImageNet-1K benchmark of MCM / NegLabel uses the whole ILSVRC-2012 validation set (50,000 images) as ID, whereas
-OpenOOD's ImageNet-1K benchmark uses 45,000 of them. The second command writes the 50,000-image list
-`test_imagenet_all.txt` by joining OpenOOD's `test_imagenet.txt` and `val_imagenet.txt`. If a Google Drive download
-stops with a quota error, rerun the script later; finished files are kept.
+If Google Drive refuses a file ("Too many users have viewed or downloaded this file recently"), rerun the script later;
+finished files are skipped.
 
 | Benchmark | ID | Near-OOD | Far-OOD |
 |---|---|---|---|
@@ -187,7 +185,7 @@ openood/            the OpenOOD framework: datasets, CLIP networks, the stream e
   postprocessors/camp/     CAMP
   postprocessors/<method>/ the compared methods, from their official code
 scripts/run.sh, run_all.sh, summarize.py   one run, all runs, the result table
-scripts/download/   OpenOOD's download script
+scripts/download/   the data download (adapted from OpenOOD) and conversion
 scripts/experiment/ the paper's tables and figures, one package per item
 results/, .cache/   run outputs and cached image features (not tracked)
 ```

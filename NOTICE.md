@@ -5,7 +5,7 @@ third-party code and data.
 
 | Component | Where | Source | License |
 |---|---|---|---|
-| OpenOOD framework | `main.py`, `openood/`, `configs/`, `scripts/download/` | [Jingkang50/OpenOOD](https://github.com/Jingkang50/OpenOOD) | MIT, Copyright (c) 2021 Jingkang Yang (reproduced in [`LICENSE`](LICENSE)) |
+| OpenOOD framework | `main.py`, `openood/`, `configs/`, `scripts/download/download.py` | [Jingkang50/OpenOOD](https://github.com/Jingkang50/OpenOOD) | MIT, Copyright (c) 2021 Jingkang Yang (reproduced in [`LICENSE`](LICENSE)) |
 | CLIP stream evaluator, the official AdaNeg and TANL code and their network (`FixedCLIP_NegOODPrompt`), and the WordNet negative-label mining (the implementation of NegLabel's NegMining that NegLabel, TANL, AdaNeg, OODD and CoEvo read) | `openood/evaluators/ood_evaluator_clip_tta.py`, `openood/postprocessors/{adaneg,tanl}/`, `openood/networks/clip_fixed_ood_prompt.py`, `openood/networks/clip_for_wordnet_prepare.py`, `openood/utils/vlm/negative_labels/{wordnet,features}.py` | [PolyU-VCLab/OpenOOD-VLM](https://github.com/PolyU-VCLab/OpenOOD-VLM) | MIT (its `LICENSE` carries the OpenOOD copyright) |
 | OpenAI CLIP | `openood/networks/clip/` | [openai/CLIP](https://github.com/openai/CLIP) | MIT, Copyright (c) 2021 OpenAI ([`openood/networks/clip/LICENSE`](openood/networks/clip/LICENSE)) |
 | WordNet noun and adjective lists | `data/txtfiles/` | the `txtfiles/` directory of [tmlr-group/NegLabel](https://github.com/tmlr-group/NegLabel), derived from WordNet 3.0 | WordNet 3.0 license, reproduced below (the NegLabel repository itself is Apache-2.0) |
